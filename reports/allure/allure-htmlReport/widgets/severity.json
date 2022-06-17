@@ -1,0 +1,281 @@
+[ {
+  "uid" : "c89b56daa6467854",
+  "name" : "UpdateRecord - Bad Request",
+  "time" : {
+    "start" : 1655446657840,
+    "stop" : 1655446658500,
+    "duration" : 660
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "b0bde224ada2c390",
+  "name" : "E2E Scenario 1",
+  "time" : {
+    "start" : 1655445464921,
+    "stop" : 1655445466746,
+    "duration" : 1825
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "528fca509858902c",
+  "name" : "E2E Scenario 1",
+  "time" : {
+    "start" : 1655446661319,
+    "stop" : 1655446663362,
+    "duration" : 2043
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "26ca85f42ba90b95",
+  "name" : "CreateRecord - Optional",
+  "time" : {
+    "start" : 1655446654572,
+    "stop" : 1655446655174,
+    "duration" : 602
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "ab3bf6d41bfe2b1b",
+  "name" : "RetrieveRecord - Not Found",
+  "time" : {
+    "start" : 1655445460110,
+    "stop" : 1655445460824,
+    "duration" : 714
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "5aa68d14b2d4f79f",
+  "name" : "CreateRecord - Bad Request",
+  "time" : {
+    "start" : 1655445458779,
+    "stop" : 1655445459391,
+    "duration" : 612
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "e3e83569b74e1a23",
+  "name" : "E2E Scenario 2",
+  "time" : {
+    "start" : 1655446663366,
+    "stop" : 1655446665408,
+    "duration" : 2042
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "407429d66941fc7e",
+  "name" : "CreateRecord",
+  "time" : {
+    "start" : 1655445456326,
+    "stop" : 1655445458165,
+    "duration" : 1839
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "e6e371832a7780a3",
+  "name" : "DeleteRecord - All",
+  "time" : {
+    "start" : 1655446660608,
+    "stop" : 1655446661317,
+    "duration" : 709
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "516f5a2dabafaf85",
+  "name" : "RetrieveRecord",
+  "time" : {
+    "start" : 1655445459395,
+    "stop" : 1655445459459,
+    "duration" : 64
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "839bf8e84709bdbf",
+  "name" : "UpdateRecord - Partial",
+  "time" : {
+    "start" : 1655446658505,
+    "stop" : 1655446659178,
+    "duration" : 673
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "dface3d5afbda38c",
+  "name" : "RetrieveRecord",
+  "time" : {
+    "start" : 1655446655822,
+    "stop" : 1655446655906,
+    "duration" : 84
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "1d74abe895f54ab3",
+  "name" : "E2E Scenario 2",
+  "time" : {
+    "start" : 1655445466751,
+    "stop" : 1655445469115,
+    "duration" : 2364
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "e27aacf2c5e795",
+  "name" : "DeleteRecord",
+  "time" : {
+    "start" : 1655446659181,
+    "stop" : 1655446659985,
+    "duration" : 804
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "81dff4ebbb017258",
+  "name" : "RetrieveRecord - Not Found",
+  "time" : {
+    "start" : 1655446656511,
+    "stop" : 1655446657121,
+    "duration" : 610
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "86dd23eb9393e842",
+  "name" : "RetrieveRecord - List All",
+  "time" : {
+    "start" : 1655445459462,
+    "stop" : 1655445460106,
+    "duration" : 644
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "631dce6cd34ac978",
+  "name" : "CreateRecord - Optional",
+  "time" : {
+    "start" : 1655445458169,
+    "stop" : 1655445458775,
+    "duration" : 606
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "56bf32c0c73286b1",
+  "name" : "DeleteRecord - Alphanumeric",
+  "time" : {
+    "start" : 1655445463594,
+    "stop" : 1655445464302,
+    "duration" : 708
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "2882e3cdc5d811ed",
+  "name" : "UpdateRecord - Bad Request",
+  "time" : {
+    "start" : 1655445461444,
+    "stop" : 1655445462157,
+    "duration" : 713
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "b08fe707aafa5d1a",
+  "name" : "DeleteRecord - All",
+  "time" : {
+    "start" : 1655445464307,
+    "stop" : 1655445464917,
+    "duration" : 610
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "4bde7977a850809b",
+  "name" : "UpdateRecord - Partial",
+  "time" : {
+    "start" : 1655445462162,
+    "stop" : 1655445462880,
+    "duration" : 718
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "98543294c76679b4",
+  "name" : "CreateRecord - Bad Request",
+  "time" : {
+    "start" : 1655446655177,
+    "stop" : 1655446655815,
+    "duration" : 638
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "c06760f7f510aa9c",
+  "name" : "DeleteRecord - Alphanumeric",
+  "time" : {
+    "start" : 1655446659988,
+    "stop" : 1655446660604,
+    "duration" : 616
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "97e350a4534c45fc",
+  "name" : "CreateRecord",
+  "time" : {
+    "start" : 1655446652815,
+    "stop" : 1655446654567,
+    "duration" : 1752
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "e414059c7b4828a9",
+  "name" : "DeleteRecord",
+  "time" : {
+    "start" : 1655445462883,
+    "stop" : 1655445463589,
+    "duration" : 706
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "d08def216ed452cd",
+  "name" : "UpdateRecord",
+  "time" : {
+    "start" : 1655446657125,
+    "stop" : 1655446657836,
+    "duration" : 711
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "f17e13152fe65ef5",
+  "name" : "RetrieveRecord - List All",
+  "time" : {
+    "start" : 1655446655910,
+    "stop" : 1655446656507,
+    "duration" : 597
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "c816414db8e190e4",
+  "name" : "UpdateRecord",
+  "time" : {
+    "start" : 1655445460829,
+    "stop" : 1655445461438,
+    "duration" : 609
+  },
+  "status" : "passed",
+  "severity" : "normal"
+} ]

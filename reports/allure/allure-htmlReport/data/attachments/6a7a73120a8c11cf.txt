@@ -1,0 +1,1 @@
+tests["Verify request status"] = pm.expect(pm.response.to.have.status(204));

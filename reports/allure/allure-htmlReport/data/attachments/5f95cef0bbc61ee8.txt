@@ -1,0 +1,32 @@
+var path = pm.environment.get("URL");
+var bearer = pm.environment.get("bearer_token");
+
+if(bearer === null || bearer === "") {
+    getBearer();
+}
+
+//Generate bearer token
+function getBearer() {
+    pm.sendRequest({
+        url: path + "/api/login",
+        method: 'POST',
+        header: {
+            'Content-Type': 'application/json'
+        },
+        body: {
+            mode: 'raw',
+            raw: JSON.stringify({
+                "email": "eve.holt@reqres.in",
+                "password": "cityslicka"
+            })
+        }
+    }, function (err, res) {
+        if(err) {
+            console.log(err);
+        }
+        else {
+            var loginData = res.json();
+            pm.environment.set("bearer_token", loginData.token);
+        }
+    });
+} 

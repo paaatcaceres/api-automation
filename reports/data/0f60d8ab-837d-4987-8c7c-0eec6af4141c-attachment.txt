@@ -1,0 +1,7 @@
+var responseData = JSON.parse(responseBody);
+
+tests["Verify request status"] = pm.expect(pm.response.to.have.status(200));
+tests["Verify id"] = pm.expect(responseData.data).to.have.property("id");
+tests["Verify id"] = pm.expect(responseData.data.email).to.not.be.null;
+tests["Verify url"] = pm.expect(responseData.support.url).to.be.eql("https://reqres.in/#support-heading");
+

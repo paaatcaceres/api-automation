@@ -1,0 +1,75 @@
+var path = pm.environment.get("URL");
+var recordDetail = pm.environment.get("name");
+var jobDetail = pm.environment.get("job");
+
+//Generate bearer token
+pm.sendRequest({
+    url: path + "/api/login",
+    method: 'POST',
+    header: {
+        'Content-Type': 'application/json'
+    },
+    body: {
+        mode: 'raw',
+        raw: JSON.stringify({
+            "email": "eve.holt@reqres.in",
+            "password": "cityslicka"
+        })
+    }
+}, function (err, res) {
+    if(err) {
+        console.log(err);
+    }
+    else {
+        var loginData = res.json();
+        //tests["Verify token"] = pm.expect(loginData).to.have.property("token");
+        console.log("Login Successful")
+        pm.environment.set("bearer_token", loginData.token);
+
+        //Create record
+        pm.sendRequest({
+            url: path + "/api/users",
+            method: 'POST',
+            header: {
+                'Content-Type': 'application/json'
+            },
+            body: {
+                mode: 'raw',
+                raw: JSON.stringify({
+                    "name": recordDetail,
+                    "job": jobDetail
+                })
+            }
+        }, function (err, res) {
+            if (err) {
+                console.log();
+            }
+            else {
+                var recordData = res.json();
+                console.log("Create Record Successful")
+                pm.environment.set("recordId", recordData.id);
+
+                //Retrieve Record
+                pm.sendRequest({
+                    //url: path + "/api/users/" + pm.environment.get("recordId"),
+                    //Use existing record to make e2e work
+                    url: path + "/api/users/2",
+                    method: 'GET',
+                    header: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: {}
+                }, function (err, res) {
+                    if (err) {
+                        console.log();
+                    }
+                    else {
+                        var viewData = res.json();
+                        console.log("Retrieve Record Successful")
+                    }   
+                });
+
+            }
+        });        
+    }
+});
