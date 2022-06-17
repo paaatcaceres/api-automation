@@ -1,0 +1,1363 @@
+{
+	"info": {
+		"_postman_id": "edfa9114-95c7-4527-88e7-64bbf513b35f",
+		"name": "MockProject",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CreateRecord",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"var recordDetail = pm.environment.get(\"name\");",
+							"var jobDetail = pm.environment.get(\"job\");",
+							"",
+							"",
+							"tests[\"Verify request status\"] = pm.expect(pm.response.to.have.status(201));",
+							"tests[\"Verify id\"] = pm.expect(data.id).to.be.not.null;",
+							"tests[\"Verify name\"] = pm.expect(data.name).to.be.eql(recordDetail);",
+							"tests[\"Verify job\"] = pm.expect(data.job).to.be.eql(jobDetail);",
+							"tests[\"Verify timestamp\"] = pm.expect(data.updatedAt).to.be.not.null;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var path = pm.environment.get(\"URL\");",
+							"var bearer = pm.environment.get(\"bearer_token\");",
+							"",
+							"if(bearer === null || bearer === \"\") {",
+							"    getBearer();",
+							"}",
+							"",
+							"//Generate bearer token",
+							"function getBearer() {",
+							"    pm.sendRequest({",
+							"        url: path + \"/api/login\",",
+							"        method: 'POST',",
+							"        header: {",
+							"            'Content-Type': 'application/json'",
+							"        },",
+							"        body: {",
+							"            mode: 'raw',",
+							"            raw: JSON.stringify({",
+							"                \"email\": \"eve.holt@reqres.in\",",
+							"                \"password\": \"cityslicka\"",
+							"            })",
+							"        }",
+							"    }, function (err, res) {",
+							"        if(err) {",
+							"            console.log(err);",
+							"        }",
+							"        else {",
+							"            var loginData = res.json();",
+							"            pm.environment.set(\"bearer_token\", loginData.token);",
+							"        }",
+							"    });",
+							"} "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"{{name}}\",\n    \"job\": \"{{job}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/api/users",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateRecord - Optional",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"var recordDetail = pm.environment.get(\"name\");",
+							"",
+							"tests[\"Verify request status\"] = pm.expect(pm.response.to.have.status(201));",
+							"tests[\"Verify id\"] = pm.expect(data.id).to.be.not.null;",
+							"tests[\"Verify name\"] = pm.expect(data.name).to.be.eql(recordDetail);",
+							"tests[\"Verify timestamp\"] = pm.expect(data.updatedAt).to.be.not.null;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var path = pm.environment.get(\"URL\");",
+							"var bearer = pm.environment.get(\"bearer_token\");",
+							"",
+							"if(bearer === null || bearer === \"\") {",
+							"    getBearer();",
+							"}",
+							"",
+							"//Generate bearer token",
+							"function getBearer() {",
+							"    pm.sendRequest({",
+							"        url: path + \"/api/login\",",
+							"        method: 'POST',",
+							"        header: {",
+							"            'Content-Type': 'application/json'",
+							"        },",
+							"        body: {",
+							"            mode: 'raw',",
+							"            raw: JSON.stringify({",
+							"                \"email\": \"eve.holt@reqres.in\",",
+							"                \"password\": \"cityslicka\"",
+							"            })",
+							"        }",
+							"    }, function (err, res) {",
+							"        if(err) {",
+							"            console.log(err);",
+							"        }",
+							"        else {",
+							"            var loginData = res.json();",
+							"            pm.environment.set(\"bearer_token\", loginData.token);",
+							"        }",
+							"    });",
+							"} "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"{{name}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/api/users",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateRecord - Bad Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Verify request status\"] = pm.expect(pm.response.to.have.status(400));",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var path = pm.environment.get(\"URL\");",
+							"var bearer = pm.environment.get(\"bearer_token\");",
+							"",
+							"if(bearer === null || bearer === \"\") {",
+							"    getBearer();",
+							"}",
+							"",
+							"//Generate bearer token",
+							"function getBearer() {",
+							"    pm.sendRequest({",
+							"        url: path + \"/api/login\",",
+							"        method: 'POST',",
+							"        header: {",
+							"            'Content-Type': 'application/json'",
+							"        },",
+							"        body: {",
+							"            mode: 'raw',",
+							"            raw: JSON.stringify({",
+							"                \"email\": \"eve.holt@reqres.in\",",
+							"                \"password\": \"cityslicka\"",
+							"            })",
+							"        }",
+							"    }, function (err, res) {",
+							"        if(err) {",
+							"            console.log(err);",
+							"        }",
+							"        else {",
+							"            var loginData = res.json();",
+							"            pm.environment.set(\"bearer_token\", loginData.token);",
+							"        }",
+							"    });",
+							"} "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n//    \"name\": \"{{name}}\",\n    \"job\": \"{{job}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/api/users",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RetrieveRecord",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var responseData = JSON.parse(responseBody);",
+							"",
+							"tests[\"Verify request status\"] = pm.expect(pm.response.to.have.status(200));",
+							"tests[\"Verify id\"] = pm.expect(responseData.data).to.have.property(\"id\");",
+							"tests[\"Verify id\"] = pm.expect(responseData.data.email).to.not.be.null;",
+							"tests[\"Verify url\"] = pm.expect(responseData.support.url).to.be.eql(\"https://reqres.in/#support-heading\");",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var path = pm.environment.get(\"URL\");",
+							"var bearer = pm.environment.get(\"bearer_token\");",
+							"",
+							"if(bearer === null || bearer === \"\") {",
+							"    getBearer();",
+							"}",
+							"",
+							"//Generate bearer token",
+							"function getBearer() {",
+							"    pm.sendRequest({",
+							"        url: path + \"/api/login\",",
+							"        method: 'POST',",
+							"        header: {",
+							"            'Content-Type': 'application/json'",
+							"        },",
+							"        body: {",
+							"            mode: 'raw',",
+							"            raw: JSON.stringify({",
+							"                \"email\": \"eve.holt@reqres.in\",",
+							"                \"password\": \"cityslicka\"",
+							"            })",
+							"        }",
+							"    }, function (err, res) {",
+							"        if(err) {",
+							"            console.log(err);",
+							"        }",
+							"        else {",
+							"            var loginData = res.json();",
+							"            pm.environment.set(\"bearer_token\", loginData.token);",
+							"        }",
+							"    });",
+							"} "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/api/users/2",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RetrieveRecord - List All",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Verify request status\"] = pm.expect(pm.response.to.have.status(200));"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var path = pm.environment.get(\"URL\");",
+							"var bearer = pm.environment.get(\"bearer_token\");",
+							"",
+							"if(bearer === null || bearer === \"\") {",
+							"    getBearer();",
+							"}",
+							"",
+							"//Generate bearer token",
+							"function getBearer() {",
+							"    pm.sendRequest({",
+							"        url: path + \"/api/login\",",
+							"        method: 'POST',",
+							"        header: {",
+							"            'Content-Type': 'application/json'",
+							"        },",
+							"        body: {",
+							"            mode: 'raw',",
+							"            raw: JSON.stringify({",
+							"                \"email\": \"eve.holt@reqres.in\",",
+							"                \"password\": \"cityslicka\"",
+							"            })",
+							"        }",
+							"    }, function (err, res) {",
+							"        if(err) {",
+							"            console.log(err);",
+							"        }",
+							"        else {",
+							"            var loginData = res.json();",
+							"            pm.environment.set(\"bearer_token\", loginData.token);",
+							"        }",
+							"    });",
+							"} "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/api/users",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RetrieveRecord - Not Found",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Verify request status\"] = pm.expect(pm.response.to.have.status(404));"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var path = pm.environment.get(\"URL\");",
+							"var bearer = pm.environment.get(\"bearer_token\");",
+							"",
+							"if(bearer === null || bearer === \"\") {",
+							"    getBearer();",
+							"}",
+							"",
+							"//Generate bearer token",
+							"function getBearer() {",
+							"    pm.sendRequest({",
+							"        url: path + \"/api/login\",",
+							"        method: 'POST',",
+							"        header: {",
+							"            'Content-Type': 'application/json'",
+							"        },",
+							"        body: {",
+							"            mode: 'raw',",
+							"            raw: JSON.stringify({",
+							"                \"email\": \"eve.holt@reqres.in\",",
+							"                \"password\": \"cityslicka\"",
+							"            })",
+							"        }",
+							"    }, function (err, res) {",
+							"        if(err) {",
+							"            console.log(err);",
+							"        }",
+							"        else {",
+							"            var loginData = res.json();",
+							"            pm.environment.set(\"bearer_token\", loginData.token);",
+							"        }",
+							"    });",
+							"} "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/api/users/a",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateRecord",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"var recordDetail = pm.environment.get(\"updatedName\");",
+							"var jobDetail = pm.environment.get(\"updatedJob\");",
+							"",
+							"",
+							"tests[\"Verify request status\"] = pm.expect(pm.response.to.have.status(200));",
+							"tests[\"Verify id\"] = pm.expect(data.id).to.be.not.null;",
+							"tests[\"Verify name\"] = pm.expect(data.name).to.be.eql(recordDetail);",
+							"tests[\"Verify job\"] = pm.expect(data.job).to.be.eql(jobDetail);",
+							"tests[\"Verify timestamp\"] = pm.expect(data.updatedAt).to.be.not.null;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var path = pm.environment.get(\"URL\");",
+							"var bearer = pm.environment.get(\"bearer_token\");",
+							"",
+							"if(bearer === null || bearer === \"\") {",
+							"    getBearer();",
+							"}",
+							"",
+							"//Generate bearer token",
+							"function getBearer() {",
+							"    pm.sendRequest({",
+							"        url: path + \"/api/login\",",
+							"        method: 'POST',",
+							"        header: {",
+							"            'Content-Type': 'application/json'",
+							"        },",
+							"        body: {",
+							"            mode: 'raw',",
+							"            raw: JSON.stringify({",
+							"                \"email\": \"eve.holt@reqres.in\",",
+							"                \"password\": \"cityslicka\"",
+							"            })",
+							"        }",
+							"    }, function (err, res) {",
+							"        if(err) {",
+							"            console.log(err);",
+							"        }",
+							"        else {",
+							"            var loginData = res.json();",
+							"            pm.environment.set(\"bearer_token\", loginData.token);",
+							"        }",
+							"    });",
+							"} "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"{{updatedName}}\",\n    \"job\": \"{{updatedJob}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/api/users/2",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateRecord - Bad Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Verify request status\"] = pm.expect(pm.response.to.have.status(400));",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var path = pm.environment.get(\"URL\");",
+							"var bearer = pm.environment.get(\"bearer_token\");",
+							"",
+							"if(bearer === null || bearer === \"\") {",
+							"    getBearer();",
+							"}",
+							"",
+							"//Generate bearer token",
+							"function getBearer() {",
+							"    pm.sendRequest({",
+							"        url: path + \"/api/login\",",
+							"        method: 'POST',",
+							"        header: {",
+							"            'Content-Type': 'application/json'",
+							"        },",
+							"        body: {",
+							"            mode: 'raw',",
+							"            raw: JSON.stringify({",
+							"                \"email\": \"eve.holt@reqres.in\",",
+							"                \"password\": \"cityslicka\"",
+							"            })",
+							"        }",
+							"    }, function (err, res) {",
+							"        if(err) {",
+							"            console.log(err);",
+							"        }",
+							"        else {",
+							"            var loginData = res.json();",
+							"            pm.environment.set(\"bearer_token\", loginData.token);",
+							"        }",
+							"    });",
+							"} "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    //    \"name\": \"{{name}}\",\n    \"job\": \"{{updatedJob}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/api/users",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateRecord - Partial",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"var jobDetail = pm.environment.get(\"updatedJob\");",
+							"",
+							"tests[\"Verify request status\"] = pm.expect(pm.response.to.have.status(200));",
+							"tests[\"Verify job\"] = pm.expect(data.job).to.be.eql(jobDetail);",
+							"tests[\"Verify timestamp\"] = pm.expect(data.updatedAt).to.be.not.null;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var path = pm.environment.get(\"URL\");",
+							"var bearer = pm.environment.get(\"bearer_token\");",
+							"",
+							"if(bearer === null || bearer === \"\") {",
+							"    getBearer();",
+							"}",
+							"",
+							"//Generate bearer token",
+							"function getBearer() {",
+							"    pm.sendRequest({",
+							"        url: path + \"/api/login\",",
+							"        method: 'POST',",
+							"        header: {",
+							"            'Content-Type': 'application/json'",
+							"        },",
+							"        body: {",
+							"            mode: 'raw',",
+							"            raw: JSON.stringify({",
+							"                \"email\": \"eve.holt@reqres.in\",",
+							"                \"password\": \"cityslicka\"",
+							"            })",
+							"        }",
+							"    }, function (err, res) {",
+							"        if(err) {",
+							"            console.log(err);",
+							"        }",
+							"        else {",
+							"            var loginData = res.json();",
+							"            pm.environment.set(\"bearer_token\", loginData.token);",
+							"        }",
+							"    });",
+							"} "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"job\": \"{{updatedJob}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/api/users",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteRecord",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Verify request status\"] = pm.expect(pm.response.to.have.status(204));",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var path = pm.environment.get(\"URL\");",
+							"var bearer = pm.environment.get(\"bearer_token\");",
+							"",
+							"if(bearer === null || bearer === \"\") {",
+							"    getBearer();",
+							"}",
+							"",
+							"//Generate bearer token",
+							"function getBearer() {",
+							"    pm.sendRequest({",
+							"        url: path + \"/api/login\",",
+							"        method: 'POST',",
+							"        header: {",
+							"            'Content-Type': 'application/json'",
+							"        },",
+							"        body: {",
+							"            mode: 'raw',",
+							"            raw: JSON.stringify({",
+							"                \"email\": \"eve.holt@reqres.in\",",
+							"                \"password\": \"cityslicka\"",
+							"            })",
+							"        }",
+							"    }, function (err, res) {",
+							"        if(err) {",
+							"            console.log(err);",
+							"        }",
+							"        else {",
+							"            var loginData = res.json();",
+							"            pm.environment.set(\"bearer_token\", loginData.token);",
+							"        }",
+							"    });",
+							"} "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/api/users/2",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteRecord - Alphanumeric",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Verify request status\"] = pm.expect(pm.response.to.have.status(204));",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var path = pm.environment.get(\"URL\");",
+							"var bearer = pm.environment.get(\"bearer_token\");",
+							"",
+							"if(bearer === null || bearer === \"\") {",
+							"    getBearer();",
+							"}",
+							"",
+							"//Generate bearer token",
+							"function getBearer() {",
+							"    pm.sendRequest({",
+							"        url: path + \"/api/login\",",
+							"        method: 'POST',",
+							"        header: {",
+							"            'Content-Type': 'application/json'",
+							"        },",
+							"        body: {",
+							"            mode: 'raw',",
+							"            raw: JSON.stringify({",
+							"                \"email\": \"eve.holt@reqres.in\",",
+							"                \"password\": \"cityslicka\"",
+							"            })",
+							"        }",
+							"    }, function (err, res) {",
+							"        if(err) {",
+							"            console.log(err);",
+							"        }",
+							"        else {",
+							"            var loginData = res.json();",
+							"            pm.environment.set(\"bearer_token\", loginData.token);",
+							"        }",
+							"    });",
+							"} "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/api/users/test1",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"test1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteRecord - All",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Verify request status\"] = pm.expect(pm.response.to.have.status(204));",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var path = pm.environment.get(\"URL\");",
+							"var bearer = pm.environment.get(\"bearer_token\");",
+							"",
+							"if(bearer === null || bearer === \"\") {",
+							"    getBearer();",
+							"}",
+							"",
+							"//Generate bearer token",
+							"function getBearer() {",
+							"    pm.sendRequest({",
+							"        url: path + \"/api/login\",",
+							"        method: 'POST',",
+							"        header: {",
+							"            'Content-Type': 'application/json'",
+							"        },",
+							"        body: {",
+							"            mode: 'raw',",
+							"            raw: JSON.stringify({",
+							"                \"email\": \"eve.holt@reqres.in\",",
+							"                \"password\": \"cityslicka\"",
+							"            })",
+							"        }",
+							"    }, function (err, res) {",
+							"        if(err) {",
+							"            console.log(err);",
+							"        }",
+							"        else {",
+							"            var loginData = res.json();",
+							"            pm.environment.set(\"bearer_token\", loginData.token);",
+							"        }",
+							"    });",
+							"} "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/api/users",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "E2E Scenario 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"var recordDetail = pm.environment.get(\"name\");",
+							"var jobDetail = pm.environment.get(\"updatedJob\");",
+							"",
+							"",
+							"tests[\"Verify request status\"] = pm.expect(pm.response.to.have.status(200));",
+							"tests[\"Verify id\"] = pm.expect(data.id).to.be.not.null;",
+							"tests[\"Verify name\"] = pm.expect(data.name).to.be.eql(recordDetail);",
+							"tests[\"Verify job\"] = pm.expect(data.job).to.be.eql(jobDetail);",
+							"tests[\"Verify timestamp\"] = pm.expect(data.updatedAt).to.be.not.null;"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var path = pm.environment.get(\"URL\");",
+							"var recordDetail = pm.environment.get(\"name\");",
+							"var jobDetail = pm.environment.get(\"job\");",
+							"",
+							"",
+							"//Generate bearer token",
+							"pm.sendRequest({",
+							"    url: path + \"/api/login\",",
+							"    method: 'POST',",
+							"    header: {",
+							"        'Content-Type': 'application/json'",
+							"    },",
+							"    body: {",
+							"        mode: 'raw',",
+							"        raw: JSON.stringify({",
+							"            \"email\": \"eve.holt@reqres.in\",",
+							"            \"password\": \"cityslicka\"",
+							"        })",
+							"    }",
+							"}, function (err, res) {",
+							"    if(err) {",
+							"        console.log(err);",
+							"    }",
+							"    else {",
+							"        var loginData = res.json();",
+							"        //tests[\"Verify token\"] = pm.expect(loginData).to.have.property(\"token\");",
+							"        console.log(\"Login Successful\")",
+							"        pm.environment.set(\"bearer_token\", loginData.token);",
+							"",
+							"        //Create record",
+							"        pm.sendRequest({",
+							"            url: path + \"/api/users\",",
+							"            method: 'POST',",
+							"            header: {",
+							"                'Content-Type': 'application/json'",
+							"            },",
+							"            body: {",
+							"                mode: 'raw',",
+							"                raw: JSON.stringify({",
+							"                    \"name\": recordDetail,",
+							"                    \"job\": jobDetail",
+							"                })",
+							"            }",
+							"        }, function (err, res) {",
+							"            if (err) {",
+							"                console.log();",
+							"            }",
+							"            else {",
+							"                var recordData = res.json();",
+							"                console.log(\"Create Record Successful\")",
+							"                pm.environment.set(\"recordId\", recordData.id);",
+							"",
+							"                //Retrieve Record",
+							"                pm.sendRequest({",
+							"                    //url: path + \"/api/users/\" + pm.environment.get(\"recordId\"),",
+							"                    //Use existing record to make e2e work",
+							"                    url: path + \"/api/users/2\",",
+							"                    method: 'GET',",
+							"                    header: {",
+							"                        'Content-Type': 'application/json'",
+							"                    },",
+							"                    body: {}",
+							"                }, function (err, res) {",
+							"                    if (err) {",
+							"                        console.log();",
+							"                    }",
+							"                    else {",
+							"                        var viewData = res.json();",
+							"                        console.log(\"Retrieve Record Successful\")",
+							"                    }   ",
+							"                });",
+							"",
+							"            }",
+							"        });        ",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"{{name}}\",\n    \"job\": \"{{updatedJob}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/api/users/{{recordId}}",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"{{recordId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "E2E Scenario 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Verify request status\"] = pm.expect(pm.response.to.have.status(204));",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var path = pm.environment.get(\"URL\");",
+							"var recordDetail = pm.environment.get(\"name\");",
+							"var jobDetail = pm.environment.get(\"job\");",
+							"",
+							"//Generate bearer token",
+							"pm.sendRequest({",
+							"    url: path + \"/api/login\",",
+							"    method: 'POST',",
+							"    header: {",
+							"        'Content-Type': 'application/json'",
+							"    },",
+							"    body: {",
+							"        mode: 'raw',",
+							"        raw: JSON.stringify({",
+							"            \"email\": \"eve.holt@reqres.in\",",
+							"            \"password\": \"cityslicka\"",
+							"        })",
+							"    }",
+							"}, function (err, res) {",
+							"    if(err) {",
+							"        console.log(err);",
+							"    }",
+							"    else {",
+							"        var loginData = res.json();",
+							"        //tests[\"Verify token\"] = pm.expect(loginData).to.have.property(\"token\");",
+							"        console.log(\"Login Successful\")",
+							"        pm.environment.set(\"bearer_token\", loginData.token);",
+							"",
+							"        //Create record",
+							"        pm.sendRequest({",
+							"            url: path + \"/api/users\",",
+							"            method: 'POST',",
+							"            header: {",
+							"                'Content-Type': 'application/json'",
+							"            },",
+							"            body: {",
+							"                mode: 'raw',",
+							"                raw: JSON.stringify({",
+							"                    \"name\": recordDetail,",
+							"                    \"job\": jobDetail",
+							"                })",
+							"            }",
+							"        }, function (err, res) {",
+							"            if (err) {",
+							"                console.log();",
+							"            }",
+							"            else {",
+							"                var recordData = res.json();",
+							"                console.log(\"Create Record Successful\")",
+							"                pm.environment.set(\"recordId\", recordData.id);",
+							"",
+							"                //Retrieve Record",
+							"                pm.sendRequest({",
+							"                    //url: path + \"/api/users/\" + pm.environment.get(\"recordId\"),",
+							"                    //Use existing record to make e2e work",
+							"                    url: path + \"/api/users/2\",",
+							"                    method: 'GET',",
+							"                    header: {",
+							"                        'Content-Type': 'application/json'",
+							"                    },",
+							"                    body: {}",
+							"                }, function (err, res) {",
+							"                    if (err) {",
+							"                        console.log();",
+							"                    }",
+							"                    else {",
+							"                        var viewData = res.json();",
+							"                        console.log(\"Retrieve Record Successful\")",
+							"                    }   ",
+							"                });",
+							"",
+							"            }",
+							"        });        ",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/api/users/{{recordId}}",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"{{recordId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

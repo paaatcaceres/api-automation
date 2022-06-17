@@ -1,0 +1,6 @@
+"Epic","Feature","Story","FAILED","BROKEN","PASSED","SKIPPED","UNKNOWN"
+"","","api/users","0","0","14","0","0"
+"","","api/users/{{recordId}}","0","0","4","0","0"
+"","","api/users/test1","0","0","2","0","0"
+"","","api/users/2","0","0","6","0","0"
+"","","api/users/a","0","0","2","0","0"

@@ -1,0 +1,3 @@
+level: log, messages: Login Successful
+level: log, messages: Create Record Successful
+level: log, messages: Retrieve Record Successful

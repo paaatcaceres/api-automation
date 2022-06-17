@@ -1,0 +1,10 @@
+var data = JSON.parse(responseBody);
+var recordDetail = pm.environment.get("name");
+var jobDetail = pm.environment.get("updatedJob");
+
+
+tests["Verify request status"] = pm.expect(pm.response.to.have.status(200));
+tests["Verify id"] = pm.expect(data.id).to.be.not.null;
+tests["Verify name"] = pm.expect(data.name).to.be.eql(recordDetail);
+tests["Verify job"] = pm.expect(data.job).to.be.eql(jobDetail);
+tests["Verify timestamp"] = pm.expect(data.updatedAt).to.be.not.null;

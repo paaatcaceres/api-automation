@@ -1,0 +1,77 @@
+{
+  "uid" : "ab3bf6d41bfe2b1b",
+  "name" : "RetrieveRecord - Not Found",
+  "historyId" : "71600d2c4f3da61f283ee358e96611fc",
+  "time" : {
+    "start" : 1655445460110,
+    "stop" : 1655445460824,
+    "duration" : 714
+  },
+  "descriptionHtml" : "<p style=\"color:MediumPurple;\"> <b>  </b> </p> <h4 style=\"color:DodgerBlue;\"><b><i>Request:</i></b></h4> <p style=\"color:DodgerBlue\"> <b> GET - https://reqres.in/api/users/a </b> </p>  <table> <tr> <th style=\"border: 1px solid #dddddd;text-align: left;padding: 8px;color:Orange;\">  </th> <td style=\"border: 1px solid #dddddd;text-align: left;padding: 8px;\"> <pre style=\"color:Orange\"> <b>  </b> </pre> </td> </tr>  </table> </p> <h4 style=\"color:DodgerBlue;\"> <b> <i> Response: </i> </b> </h4> <p style=\"color:DodgerBlue\"> <b> 404 - Not Found </b> </p> <p > <pre style=\"color:Orange;\"> <b> {} </b> </pre> </p>",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "descriptionHtml" : "<p style=\"color:MediumPurple;\"> <b>  </b> </p> <h4 style=\"color:DodgerBlue;\"><b><i>Request:</i></b></h4> <p style=\"color:DodgerBlue\"> <b> GET - https://reqres.in/api/users/a </b> </p>  <table> <tr> <th style=\"border: 1px solid #dddddd;text-align: left;padding: 8px;color:Orange;\">  </th> <td style=\"border: 1px solid #dddddd;text-align: left;padding: 8px;\"> <pre style=\"color:Orange\"> <b>  </b> </pre> </td> </tr>  </table> </p> <h4 style=\"color:DodgerBlue;\"> <b> <i> Response: </i> </b> </h4> <p style=\"color:DodgerBlue\"> <b> 404 - Not Found </b> </p> <p > <pre style=\"color:Orange;\"> <b> {} </b> </pre> </p>",
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Verify request status",
+      "time" : {
+        "start" : 1655445460818,
+        "stop" : 1655445460818,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ {
+      "uid" : "beb5c3ebf15330fa",
+      "name" : "pre_request",
+      "source" : "beb5c3ebf15330fa.txt",
+      "type" : "text/plain",
+      "size" : 764
+    }, {
+      "uid" : "5ba39ad9e0aebb4a",
+      "name" : "test_scrpt",
+      "source" : "5ba39ad9e0aebb4a.txt",
+      "type" : "text/plain",
+      "size" : 76
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "api/users/a"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "ab3bf6d41bfe2b1b.json",
+  "parameterValues" : [ ]
+}
